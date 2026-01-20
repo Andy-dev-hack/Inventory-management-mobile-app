@@ -6,7 +6,7 @@ describe("AssetSchema Validation Factory", () => {
     // Simulate input from a simple form
     const input = {
       name: "Monitor 4K",
-      category: "electronics",
+      category: "monitor",
       value: 450.99,
     };
 

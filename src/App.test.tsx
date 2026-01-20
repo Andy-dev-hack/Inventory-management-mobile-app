@@ -16,7 +16,7 @@ describe("App Integration", () => {
       </MemoryRouter>,
     );
     // Dashboard header
-    expect(screen.getAllByText(/Nexus/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Plutux/i).length).toBeGreaterThan(0);
     expect(
       screen.getAllByText(/Premium Asset Management/i).length,
     ).toBeGreaterThan(0);

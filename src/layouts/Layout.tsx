@@ -17,7 +17,7 @@ export const Layout = () => {
 
       {/* Desktop Footer */}
       <footer className="hidden md:block bg-slate-900 border-t border-slate-700 py-6 text-center text-sm text-slate-500 relative z-10">
-        <p>© 2026 Nexus Inventory. Premium Asset Management.</p>
+        <p>© 2026 Plutux Vault. Premium Asset Management.</p>
       </footer>
 
       {/* Mobile Navigation */}

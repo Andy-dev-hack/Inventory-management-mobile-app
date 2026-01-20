@@ -49,11 +49,44 @@ export const useInventory = () => {
     return true;
   };
 
+  const updateAsset = async (
+    id: string,
+    updates: Partial<Asset>,
+  ): Promise<boolean> => {
+    // Optimistic update could be done here, but sticking to safe "server" response for now
+    const [err, updated] = await AssetService.updateAsset(id, updates);
+
+    if (err) {
+      setError(err.message);
+      return false;
+    }
+
+    if (updated) {
+      setAssets((prev) => prev.map((a) => (a.id === id ? updated : a)));
+    }
+
+    return true;
+  };
+
+  const deleteAsset = async (id: string): Promise<boolean> => {
+    const [err] = await AssetService.deleteAsset(id);
+
+    if (err) {
+      setError(err.message);
+      return false;
+    }
+
+    setAssets((prev) => prev.filter((a) => a.id !== id));
+    return true;
+  };
+
   return {
     assets,
     loading,
     error,
     refreshAssets,
     addAsset,
+    updateAsset,
+    deleteAsset,
   };
 };

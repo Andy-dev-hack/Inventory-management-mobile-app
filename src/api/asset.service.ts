@@ -1,7 +1,7 @@
 import { AssetSchema, type Asset } from "../schemas/asset.schema";
 import { handleAsync, type AsyncResult } from "../utils/handle-async";
 
-const STORAGE_KEY = "nexus_assets_data";
+const STORAGE_KEY = "plutux_vault_assets_data";
 
 export const AssetService = {
   getAssets: (): AsyncResult<Asset[]> => {
@@ -42,5 +42,59 @@ export const AssetService = {
 
     // Retornamos usando el handler universal
     return handleAsync(saveAction);
+  },
+
+  updateAsset: async (
+    id: string,
+    updates: Partial<Asset>,
+  ): AsyncResult<Asset> => {
+    const updateAction = (async (): Promise<Asset> => {
+      const [err, current] = await AssetService.getAssets();
+      if (err) throw err;
+
+      const assets = current || [];
+      const index = assets.findIndex((a) => a.id === id);
+
+      if (index === -1) {
+        throw new Error(`Asset with ID ${id} not found`);
+      }
+
+      // Merge existing asset with updates
+      // Important: We validate the MERGED object to ensure consistency
+      const rawUpdated = { ...assets[index], ...updates };
+      const validation = AssetSchema.safeParse(rawUpdated);
+
+      if (!validation.success) {
+        throw new Error(`Validation failed: ${validation.error.message}`);
+      }
+
+      const updatedAsset = validation.data;
+      assets[index] = updatedAsset;
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(assets));
+
+      return updatedAsset;
+    })();
+
+    return handleAsync(updateAction);
+  },
+
+  deleteAsset: async (id: string): AsyncResult<boolean> => {
+    const deleteAction = (async (): Promise<boolean> => {
+      const [err, current] = await AssetService.getAssets();
+      if (err) throw err;
+
+      const assets = current || [];
+      const filtered = assets.filter((a) => a.id !== id);
+
+      if (filtered.length === assets.length) {
+        throw new Error(`Asset with ID ${id} not found`);
+      }
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+      return true;
+    })();
+
+    return handleAsync(deleteAction);
   },
 };

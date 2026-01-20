@@ -1,10 +1,10 @@
-# 📦 Nexus Inventory
+# 📦 Plutux Vault
 
-**Nexus Inventory** is a premium, mobile-first asset management application built with **React 19**, **TypeScript**, and **"Senior Engineer" architectural standards**.
+**Plutux Vault** is a premium, mobile-first asset management application built with **React 19**, **TypeScript**, and **"Senior Engineer" architectural standards**.
 
 It is designed to demonstrate a robust, scalable frontend architecture without the complexity of a backend, utilizing a Service Layer pattern over `localStorage`.
 
-![Nexus Inventory Banner](https://placehold.co/1200x400/0f172a/3b82f6?text=Nexus+Inventory)
+![Plutux Vault Banner](https://placehold.co/1200x400/0f172a/3b82f6?text=Plutux+Vault)
 
 ## 🌟 Key Features
 
@@ -46,8 +46,8 @@ src/
 1.  **Clone the repository**:
 
     ```bash
-    git clone https://github.com/yourusername/nexus-inventory.git
-    cd nexus-inventory
+    git clone https://github.com/yourusername/plutux-vault.git
+    cd plutux-vault
     ```
 
 2.  **Install dependencies**:
@@ -86,4 +86,5 @@ We adhere to a generic testing strategy:
 ---
 
 Built with ❤️ by AndyDev using the **Antigravity AI Agent**.
+
 # Inventory-management-mobile-app

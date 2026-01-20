@@ -12,16 +12,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div className="relative group">
         <input
           ref={ref}
-          className={`peer block w-full appearance-none rounded-lg border bg-slate-800/50 px-4 pb-2.5 pt-5 text-sm text-slate-200 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 disabled:opacity-50 ${
+          className={`peer block w-full appearance-none rounded-lg border bg-slate-800/50 px-4 pb-2.5 pt-5 text-sm text-slate-200 placeholder-slate-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 disabled:opacity-50 ${
             error ? "border-red-500" : "border-slate-700"
           } ${className}`}
-          placeholder=" " // required for peer-placeholder-shown
           {...props}
         />
         <label
           htmlFor={props.id}
-          className={`absolute left-4 top-4 z-10 origin-[0] -translate-y-3 scale-75 transform text-sm duration-150 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-3 peer-focus:scale-75 ${
-            error ? "text-red-400" : "text-slate-400 peer-focus:text-sky-500"
+          className={`absolute left-4 top-4 z-10 origin-[0] -translate-y-3 scale-75 transform text-sm text-slate-400 duration-150 peer-focus:text-sky-500 ${
+            error ? "text-red-400" : ""
           }`}
         >
           {label}
@@ -63,8 +62,8 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         </select>
         <label
           htmlFor={props.id}
-          className={`absolute left-4 top-4 z-10 origin-[0] -translate-y-3 scale-75 transform text-sm duration-150 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-3 peer-focus:scale-75 ${
-            error ? "text-red-400" : "text-slate-400 peer-focus:text-sky-500"
+          className={`absolute left-4 top-4 z-10 origin-[0] -translate-y-3 scale-75 transform text-sm text-slate-400 duration-150 peer-focus:text-sky-500 ${
+            error ? "text-red-400" : ""
           }`}
         >
           {label}

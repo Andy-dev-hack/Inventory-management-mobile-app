@@ -85,14 +85,32 @@ export const InventoryFilters: React.FC<InventoryFiltersProps> = ({
             <option value="all" className="bg-slate-800">
               All Categories
             </option>
-            <option value="electronics" className="bg-slate-800">
-              Electronics
+            <option value="laptop" className="bg-slate-800">
+              Laptops
+            </option>
+            <option value="desktop" className="bg-slate-800">
+              Desktops
+            </option>
+            <option value="smartphone" className="bg-slate-800">
+              Smartphones
+            </option>
+            <option value="tablet" className="bg-slate-800">
+              Tablets
+            </option>
+            <option value="monitor" className="bg-slate-800">
+              Monitors
+            </option>
+            <option value="peripheral" className="bg-slate-800">
+              Peripherals
+            </option>
+            <option value="network" className="bg-slate-800">
+              Network
+            </option>
+            <option value="server" className="bg-slate-800">
+              Servers
             </option>
             <option value="furniture" className="bg-slate-800">
               Furniture
-            </option>
-            <option value="vehicles" className="bg-slate-800">
-              Vehicles
             </option>
             <option value="other" className="bg-slate-800">
               Other

@@ -16,7 +16,7 @@ export const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0">
               <span className="text-2xl font-bold text-white tracking-tighter">
-                Nexus<span className="text-sky-500">.</span>
+                Plutux Vault<span className="text-sky-500">.</span>
               </span>
             </Link>
             <div className="hidden md:block">

@@ -12,7 +12,7 @@ export const Dashboard = () => {
     <div className="space-y-8 animate-in fade-in duration-500">
       <header className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white/90 drop-shadow-sm">
-          Nexus <span className="text-sky-500">Inventory</span>
+          Plutux <span className="text-sky-500">Vault</span>
         </h1>
         <p className="mt-2 text-slate-400 text-lg">
           Premium Asset Management System

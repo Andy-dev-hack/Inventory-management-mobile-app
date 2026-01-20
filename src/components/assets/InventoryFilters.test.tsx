@@ -41,8 +41,8 @@ describe("InventoryFilters", () => {
     );
 
     const select = screen.getByRole("combobox");
-    fireEvent.change(select, { target: { value: "electronics" } });
+    fireEvent.change(select, { target: { value: "laptop" } });
 
-    expect(handleCategory).toHaveBeenCalledWith("electronics");
+    expect(handleCategory).toHaveBeenCalledWith("laptop");
   });
 });

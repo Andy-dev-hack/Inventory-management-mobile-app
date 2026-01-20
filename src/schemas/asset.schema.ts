@@ -13,7 +13,18 @@ export const AssetSchema = z.object({
   serialNumber: z.string().optional(),
 
   // Categoría cerrada para filtrar fácilmente después
-  category: z.enum(["electronics", "furniture", "vehicles", "other"]),
+  category: z.enum([
+    "laptop",
+    "desktop",
+    "smartphone",
+    "tablet",
+    "monitor",
+    "peripheral",
+    "network",
+    "server",
+    "furniture",
+    "other",
+  ]),
 
   value: z.number().positive("Value must be positive"),
 

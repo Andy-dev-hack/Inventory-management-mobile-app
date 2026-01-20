@@ -1,4 +1,4 @@
-# Nexus Inventory - Project Structure & Flow
+# Plutux Vault - Project Structure & Flow
 
 ## 📂 Directory Map
 

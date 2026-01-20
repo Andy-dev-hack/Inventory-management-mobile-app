@@ -150,11 +150,17 @@ export const AssetForm = ({ onSubmit }: AssetFormProps) => {
           name="category"
           id="category"
           error={errors.category}
-          defaultValue="electronics"
+          defaultValue="laptop"
           options={[
-            { value: "electronics", label: "Electronics" },
+            { value: "laptop", label: "Laptop" },
+            { value: "desktop", label: "Desktop" },
+            { value: "smartphone", label: "Smartphone" },
+            { value: "tablet", label: "Tablet" },
+            { value: "monitor", label: "Monitor" },
+            { value: "peripheral", label: "Peripheral" },
+            { value: "network", label: "Network Equipment" },
+            { value: "server", label: "Server" },
             { value: "furniture", label: "Furniture" },
-            { value: "vehicles", label: "Vehicles" },
             { value: "other", label: "Other" },
           ]}
         />

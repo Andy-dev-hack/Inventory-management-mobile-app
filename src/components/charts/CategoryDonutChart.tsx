@@ -14,27 +14,26 @@ interface CategoryDonutChartProps {
 }
 
 const COLORS = {
-  electronics: "#0ea5e9", // Sky-500
-  furniture: "#f59e0b", // Amber-500
-  vehicles: "#ef4444", // Red-500
-  other: "#64748b", // Slate-500
+  laptop: "#0ea5e9", // Sky-500
+  desktop: "#3b82f6", // Blue-500
+  smartphone: "#8b5cf6", // Violet-500
+  tablet: "#a855f7", // Purple-500
+  monitor: "#f59e0b", // Amber-500
+  peripheral: "#f97316", // Orange-500
+  network: "#10b981", // Emerald-500
+  server: "#ef4444", // Red-500
+  furniture: "#64748b", // Slate-500
+  other: "#94a3b8", // Slate-400
 };
 
 export const CategoryDonutChart = ({ assets }: CategoryDonutChartProps) => {
   const data = useMemo(() => {
-    const counts: Record<string, number> = {
-      electronics: 0,
-      furniture: 0,
-      vehicles: 0,
-      other: 0,
-    };
+    // Dynamically count categories based on the schema
+    const counts: Record<string, number> = {};
 
     assets.forEach((asset) => {
-      if (counts[asset.category] !== undefined) {
-        counts[asset.category]++;
-      } else {
-        counts.other++;
-      }
+      const cat = asset.category || "other";
+      counts[cat] = (counts[cat] || 0) + 1;
     });
 
     return Object.keys(counts)

@@ -1,4 +1,4 @@
-# Nexus Inventory - Project Roadmap
+# Plutux Vault - Project Roadmap
 
 **Project Context**: A premium asset management system built with React, TypeScript, and "Senior Engineer" standards. The goal is to evolve the web application into a high-fidelity **Mobile Web App (PWA)** that feels native.
 
