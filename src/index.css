@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Palette Variables for easy reference */
+:root {
+  --color-dark-bg: #1d1716;
+  --color-panel-bg: #402a23;
+  --color-accent: #a55233;
+  --color-highlight: #f3bc77;
+}
+
+@layer utilities {
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 15s ease infinite;
+  }
+}
+
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Base body style for the full app background */
+body {
+  background: linear-gradient(-45deg, #1d1716, #402a23, #2a1b18, #1d1716);
+  background-size: 400% 400%;
+  animation: gradient-x 15s ease infinite;
+  color: #f3bc77; /* Default text color to highlight */
+  font-family: "Inter", system-ui, sans-serif;
+  min-height: 100vh;
+}
