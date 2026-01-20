@@ -11,7 +11,7 @@ describe("AssetForm", () => {
     render(<AssetForm onSubmit={vi.fn()} />);
 
     expect(screen.getByLabelText(/Asset Name/i)).toBeDefined();
-    expect(screen.getByLabelText(/Serial Number/i)).toBeDefined();
+    expect(screen.getByLabelText("Serial Number (Optional)")).toBeDefined();
     expect(screen.getByLabelText(/Category/i)).toBeDefined();
     expect(screen.getByLabelText(/Value/i)).toBeDefined();
     expect(screen.getByLabelText(/Status/i)).toBeDefined();

@@ -23,13 +23,11 @@ export const AssetCard = ({ asset }: AssetCardProps) => {
   };
 
   return (
-    <div className="border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-gray-800 dark:border-gray-700">
-      <div className="flex justifying-between items-start mb-2">
+    <div className="border border-slate-700 bg-slate-800 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex justify-between items-start mb-2">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            {asset.name}
-          </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <h3 className="text-lg font-semibold text-white">{asset.name}</h3>
+          <p className="text-sm text-slate-400">
             {asset.serialNumber || "No Serial Number"}
           </p>
         </div>
@@ -38,20 +36,20 @@ export const AssetCard = ({ asset }: AssetCardProps) => {
 
       <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
         <div>
-          <p className="text-gray-500 dark:text-gray-400">Category</p>
-          <p className="font-medium capitalize text-gray-900 dark:text-gray-100">
+          <p className="text-slate-400">Category</p>
+          <p className="font-medium capitalize text-slate-200">
             {asset.category}
           </p>
         </div>
         <div>
-          <p className="text-gray-500 dark:text-gray-400">Value</p>
-          <p className="font-medium text-gray-900 dark:text-gray-100">
+          <p className="text-slate-400">Value</p>
+          <p className="font-medium text-slate-200">
             {formatCurrency(asset.value)}
           </p>
         </div>
         <div className="col-span-2">
-          <p className="text-gray-500 dark:text-gray-400">Purchased</p>
-          <p className="font-medium text-gray-900 dark:text-gray-100">
+          <p className="text-slate-400">Purchased</p>
+          <p className="font-medium text-slate-200">
             {formatDate(asset.purchaseDate)}
           </p>
         </div>

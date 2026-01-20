@@ -12,8 +12,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div className="relative group">
         <input
           ref={ref}
-          className={`peer block w-full appearance-none rounded-lg border bg-white/5 px-4 pb-2.5 pt-5 text-sm text-gray-100 focus:border-[#f3bc77] focus:outline-none focus:ring-1 focus:ring-[#f3bc77] disabled:opacity-50 ${
-            error ? "border-red-500" : "border-gray-600"
+          className={`peer block w-full appearance-none rounded-lg border bg-slate-800/50 px-4 pb-2.5 pt-5 text-sm text-slate-200 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 disabled:opacity-50 ${
+            error ? "border-red-500" : "border-slate-700"
           } ${className}`}
           placeholder=" " // required for peer-placeholder-shown
           {...props}
@@ -21,7 +21,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <label
           htmlFor={props.id}
           className={`absolute left-4 top-4 z-10 origin-[0] -translate-y-3 scale-75 transform text-sm duration-150 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-3 peer-focus:scale-75 ${
-            error ? "text-red-400" : "text-gray-400 peer-focus:text-[#f3bc77]"
+            error ? "text-red-400" : "text-slate-400 peer-focus:text-sky-500"
           }`}
         >
           {label}
@@ -46,8 +46,8 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       <div className="relative group">
         <select
           ref={ref}
-          className={`peer block w-full appearance-none rounded-lg border bg-white/5 px-4 pb-2.5 pt-5 text-sm text-gray-100 focus:border-[#f3bc77] focus:outline-none focus:ring-1 focus:ring-[#f3bc77] disabled:opacity-50 ${
-            error ? "border-red-500" : "border-gray-600"
+          className={`peer block w-full appearance-none rounded-lg border bg-slate-800/50 px-4 pb-2.5 pt-5 text-sm text-slate-200 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 disabled:opacity-50 ${
+            error ? "border-red-500" : "border-slate-700"
           } ${className}`}
           {...props}
         >
@@ -55,7 +55,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             <option
               key={opt.value}
               value={opt.value}
-              className="bg-[#402a23] text-white"
+              className="bg-slate-800 text-slate-200"
             >
               {opt.label}
             </option>
@@ -64,7 +64,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         <label
           htmlFor={props.id}
           className={`absolute left-4 top-4 z-10 origin-[0] -translate-y-3 scale-75 transform text-sm duration-150 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-3 peer-focus:scale-75 ${
-            error ? "text-red-400" : "text-gray-400 peer-focus:text-[#f3bc77]"
+            error ? "text-red-400" : "text-slate-400 peer-focus:text-sky-500"
           }`}
         >
           {label}
@@ -92,12 +92,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variants = {
       primary:
-        "bg-gradient-to-r from-[#a55233] to-[#f3bc77] text-white hover:brightness-110 focus:ring-[#f3bc77]",
+        "bg-gradient-to-r from-sky-600 to-sky-500 text-white hover:brightness-110 focus:ring-sky-500 shadow-sky-500/20",
       secondary:
-        "bg-white/10 text-[#f3bc77] hover:bg-white/20 focus:ring-gray-500 border border-[#f3bc77]/30",
+        "bg-slate-800 text-sky-400 hover:bg-slate-700 focus:ring-slate-500 border border-slate-700",
       danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500",
       ghost:
-        "bg-transparent text-[#f3bc77] hover:text-white hover:bg-white/5 shadow-none",
+        "bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 shadow-none",
     };
 
     return (

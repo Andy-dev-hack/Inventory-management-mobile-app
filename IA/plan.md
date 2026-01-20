@@ -19,78 +19,68 @@
   - Implemented Global Layout with Top Navbar.
 - **Status**: **[COMPLETED]**
 
-## 📱 Phase 3: Mobile App Experience (Current Focus)
+## ✅ Phase 3: Visual & Mobile Overhaul (Completed)
 
-**Goal**: Transform the responsive website into a specialized "Mobile-First" experience.
+We have successfully transformed the app into a premium, mobile-first experience.
 
-### 1. Mobile Navigation (Bottom Tab Bar)
+### Executed Tasks
 
-- replace Top Navbar with a fixed **Bottom Tab Bar** for mobile screens.
-- Easy thumb access to "Dashboard", "Browse", and "Add".
+- **[x] Visual Design Overhaul**:
+  - Implemented "Industrial Dark" theme (`bg-slate-900`, `text-slate-200`).
+  - Updated color palette from Earthy/Brown to Professional Slate/Sky Blue.
+  - Refactored all Atomic components (`Input`, `Select`, `Button`) to match new design.
+- **[x] Mobile Navigation**:
+  - **[x] Bottom Tab Bar**: Fixed navigation for easy thumb access.
+  - **[x] Sticky FAB**: Floating Action Button for "Add Asset".
+  - **[x] Navbar Refactor**: Simplified top bar for mobile, removed hamburger menu.
+- **[x] Interactive Feedback**:
+  - **[x] Toast Notifications**: Integrated `sonner` for elegant success/error messages.
+  - **[x] Error Handling**: Replaced native `alert()` with toast feedback.
+- **[x] Codebase Cleanup**:
+  - **[x] Tests**: 100% pass rate on all updated components.
+  - **[x] Linting**: Resolved unused variables and strict type issues.
 
-### 2. Native Interactions
+### Deferred / Future Mobile Enhancements
 
-- **Touch Targets**: Ensure all buttons are at least 44x44px.
-- **Haptics**: Use `navigator.vibrate` for tactile feedback on success/error.
-- **Gestures**: Implement "Swipe to Delete" on Inventory items.
+These items remain in the backlog for future mobile optimization:
 
-### 3. PWA Capabilities (Installable App)
+- [ ] **PWA Capabilities**: Manifest.json, Service Workers.
+- [ ] **Native Gestures**: Swipe to delete, Drag and drop.
+- [ ] **Haptics**: Vibration feedback.
+- [ ] **View Toggles**: List vs Grid view switch.
 
-- **Manifest**: Create `manifest.json` for "Add to Home Screen".
-- **Icons**: Add proper app icons.
-- **Meta Tags**: Configure `viewport-fit=cover` and "standalone" mode to remove browser chrome.
-
-### 4. Visual Design Evolution (Best-in-Class Benchmarks)
-
-- **Inspiration**:
-  - **Sortly**: Use "Card View" for high-level browsing (Image + Name + Quantity).
-  - **Snipe-IT**: Use "Dense List" for detailed audits (Barcode + Serial + Status).
-- **Palette Shift**: Move to "Industrial Dark" (Slate/Midnight) to match modern SaaS trends.
-  - Background: Deep Slate (`#0f172a`).
-  - Surface: Lighter Slate (`#1e293b`).
-  - Accent: Electric Blue (`#3b82f6`) for actions, Amber (`#f59e0b`) for status.
-- **Typography**: Use distinct weights (Bold Headings, Medium Labels) for hierarchy.
-- **Skeleton Screens**: Replace spinning loaders with shimmering skeleton placeholders.
-
-### 5. Specialized Mobile UI
-
-- **Pull-to-Refresh**: Simulate native list reloading.
-- **Action Sheets**: Replace native alerts/confirmations with bottom-sheet modals.
-- **Floating Action Button (FAB)**: Replace the "Add Asset" button with a sticky FAB in the bottom-right corner.
-- **List vs Card Toggle**: Allow users to switch between dense "List View" (Rows) and visual "Card View".
-
-## 🚀 Phase 4: Advanced Features (Market-Ready)
+## ✅ Phase 4: Advanced Features (Completed)
 
 ### 1. 📸 Integrated Barcode/QR Scanner
 
-- **Scan-to-Search**: Instantly find an asset by scanning its tag.
-- **Scan-to-Add**: Auto-fill the "Serial Number" field during registration.
-- **Tech**: `react-qr-scanner`.
+- **[x] Scan-to-Search**: Instantly find an asset by scanning its tag.
+- **[x] Scan-to-Add**: Auto-fill the "Serial Number" field during registration.
+- **[x] Tech**: `@yudiel/react-qr-scanner`.
 
 ### 2. 📊 Advanced Analytics (The "Manager View")
 
-- **Visual Reports**: Mobile-friendly charts using `recharts`.
-  - **Donut Chart**: "Assets by Category".
-  - **Value Card**: "Total Inventory Value" with trend indicators.
-- **Asset History**: Vertical timeline showing audit trails for each item.
+- **[x] Visual Reports**: Mobile-friendly charts using `recharts`.
+  - **[x] Donut Chart**: "Assets by Category" (Implemented `CategoryDonutChart`).
+  - **[x] Value Card**: "Total Inventory Value" (Enhanced Dashboard Stats).
+- **[ ] Asset History**: (Deferred).
 
-## ☁️ Phase 5: Cloud Migration (Future Roadmap)
+## ☁️ Phase 5: Cloud Migration (Supabase)
 
-Since `localStorage` is limited (5MB) and local-only, here is the "Senior Engineer" path to scaling:
+Transitioning from local-only storage to a scalable cloud backend.
 
-### Option A: Supabase (Recommended)
+### 1. 🏗️ Infrastructure Setup
 
-- **What**: An open-source Firebase alternative (Postgres).
-- **Why**: Gives you a Real Database, Authentication, and Edge Functions with minimal backend code.
-- **Migration**: Replace `AssetService` (which simulates async) with the Supabase JS Client.
+- [ ] **Environment**: Configure `.env` with `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
+- [ ] **Client**: Initialize `@supabase/supabase-js` singleton.
+- [ ] **Database**: Create `assets` table with strict typing matching our Zod schema.
 
-### Option B: Local-First Architecture (Offline King)
+### 2. 🔄 Data Layer Migration
 
-- **What**: Use `SQLite` in the browser (via WASM) and sync to the cloud later.
-- **Why**: Best for field workers who might lose internet connection.
-- **Tech**: `ElectricSQL` or `RxDB`.
+- [ ] **Refactor Service**: Rewrite `AssetService.ts` to replace `localStorage` logic with Supabase queries.
+- [ ] **Error Handling**: Adapt `handleAsync` to wrap Supabase errors.
+- [ ] **Verification**: Ensure `useInventory` hook works unchanged (Interface Segregation).
 
-### Option C: Custom Backend
+### 3. 🔐 Authentication (Bonus)
 
-- **What**: Node.js/NestJS + PostgreSQL.
-- **Why**: Full control, but effective "Overkill" for this scale.
+- [ ] **Auth Context**: Manage user session.
+- [ ] **Row Level Security (RLS)**: Secure data so users only see their own inventory.

@@ -8,7 +8,8 @@ export const useInventory = () => {
   const [error, setError] = useState<string | null>(null);
 
   const refreshAssets = useCallback(async () => {
-    setLoading(true);
+    // Only set loading if not already loading to avoid eager re-renders
+    setLoading((l) => (l ? l : true));
     setError(null);
 
     const [err, data] = await AssetService.getAssets();
@@ -24,10 +25,11 @@ export const useInventory = () => {
 
   // Initial load
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     refreshAssets();
-  }, [refreshAssets]);
+  }, []);
 
-  const addAsset = async (input: CreateAssetInput) => {
+  const addAsset = async (input: CreateAssetInput): Promise<boolean> => {
     setLoading(true);
     setError(null);
 
@@ -36,20 +38,15 @@ export const useInventory = () => {
     if (err) {
       setError(err.message);
       setLoading(false);
-      return;
+      return false;
     }
 
     if (newAsset) {
-      // Optimistic update or just append?
-      // Since we simulate a backend that saves to localStorage,
-      // we can just append, but to be safe and sync with "DB",
-      // we could re-fetch. But for performance in this specific
-      // localStorage context, appending is fine as long as
-      // saveAsset returns the fully created object (with ID).
       setAssets((prev) => [...prev, newAsset]);
     }
 
     setLoading(false);
+    return true;
   };
 
   return {
