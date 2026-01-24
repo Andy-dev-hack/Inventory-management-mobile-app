@@ -9,11 +9,12 @@ src/
 ├── assets/          # Static assets (images, fonts)
 ├── context/         # 🌍 Global State (InventoryContext)
 ├── components/
-│   ├── assets/      # 📦 Domain Components (AssetList, AssetForm)
-│   └── ui/          # 🧱 Atomic Components (Button, Card, Input)
-├── hooks/           # Business Logic Hooks (useAssets)
-├── layouts/         # 📐 Page Skeletals (MainLayout)
-├── pages/           # 📱 Route Views (Dashboard, Inventory)
+│   ├── assets/      # 📦 Domain Components (AssetCard, InventoryFilters)
+│   ├── charts/      # 📊 Data Visualization (CategoryDonutChart)
+│   └── ui/          # 🧱 Atomic Components (Navbar, Badge, Button)
+├── hooks/           # Business Logic Hooks (useInventory, useAssetFilter)
+├── layouts/         # 📐 Page Skeletals (Layout)
+├── pages/           # 📱 Route Views (Dashboard, Inventory, AddAsset)
 ├── schemas/         # 🛡️ Data Types & Validation (Zod)
 │   └── asset.schema.ts
 └── utils/           # Shared Utilities

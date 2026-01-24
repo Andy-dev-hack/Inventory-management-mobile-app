@@ -47,15 +47,16 @@
 
 ### 3. Folder Structure
 
-| Path                     | Purpose                                    |
-| :----------------------- | :----------------------------------------- |
-| `src/schemas/`           | Domain validation & Types (Zod)            |
-| `src/api/`               | Persistence logic (LocalStorage / API)     |
-| `src/utils/`             | Shared helpers (e.g., `handleAsync`)       |
-| `src/components/ui/`     | Atomic, reusable UI (Buttons, Cards)       |
-| `src/components/assets/` | Business components (AssetList, AssetForm) |
-| `src/hooks/`             | Business logic & State wrappers            |
-| `src/pages/`             | Route views (Dashboard, Inventory)         |
+| Path                     | Purpose                                       |
+| :----------------------- | :-------------------------------------------- |
+| `src/schemas/`           | Domain validation & Types (Zod)               |
+| `src/api/`               | Persistence logic (LocalStorage / API)        |
+| `src/utils/`             | Shared helpers (e.g., `handleAsync`)          |
+| `src/components/ui/`     | Atomic, reusable UI (Navbar, Badge, Button)   |
+| `src/components/assets/` | Domain components (AssetCard, Filters)        |
+| `src/components/charts/` | Data Visualization (CategoryDonutChart)       |
+| `src/hooks/`             | Business logic (useInventory, useAssetFilter) |
+| `src/pages/`             | Route views (Dashboard, Inventory, AddAsset)  |
 
 ---
 
@@ -80,7 +81,18 @@ export const AssetSchema = z.object({
   id: z.uuid().default(() => globalThis.crypto.randomUUID()),
   name: z.string().min(3, "Name must be at least 3 characters").max(50),
   serialNumber: z.string().optional(),
-  category: z.enum(["electronics", "furniture", "vehicles", "other"]),
+  category: z.enum([
+    "laptop",
+    "desktop",
+    "smartphone",
+    "tablet",
+    "monitor",
+    "peripheral",
+    "network",
+    "server",
+    "furniture",
+    "other",
+  ]),
   value: z.number().positive(),
   status: z
     .enum(["active", "maintenance", "retired", "lost"])
