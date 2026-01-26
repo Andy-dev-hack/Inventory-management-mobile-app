@@ -1,7 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { Button } from "./Atoms";
 
 export const Navbar = () => {
   const location = useLocation();
+  const { user, signOut } = useAuth();
 
   const links = [
     { name: "Dashboard", href: "/" },
@@ -40,7 +43,27 @@ export const Navbar = () => {
               </div>
             </div>
           </div>
-          {/* Mobile menu button removed in favor of BottomNav */}
+          {/* Desktop User Menu (Logout) */}
+          <div className="flex items-center gap-4">
+            {/* Mobile menu button removed in favor of BottomNav */}
+            {/* We can re-use this space for logout on desktop */}
+            <div className="hidden md:flex items-center gap-4">
+              {user && (
+                <>
+                  <span className="text-xs text-slate-500 hidden lg:inline-block">
+                    {user.email}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    className="text-xs"
+                    onClick={() => signOut()}
+                  >
+                    Sign Out
+                  </Button>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </nav>

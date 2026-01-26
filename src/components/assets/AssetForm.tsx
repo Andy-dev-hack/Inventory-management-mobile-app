@@ -25,9 +25,9 @@ export const AssetForm = ({ onSubmit }: AssetFormProps) => {
       ...data,
       value: Number(data.value),
       purchaseDate:
-        data.purchaseDate === ""
-          ? undefined
-          : new Date(data.purchaseDate as string).toISOString(),
+        data.purchaseDate && typeof data.purchaseDate === "string"
+          ? new Date(data.purchaseDate).toISOString()
+          : undefined,
       status: data.status || undefined,
     };
 

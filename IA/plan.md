@@ -70,17 +70,31 @@ Transitioning from local-only storage to a scalable cloud backend.
 
 ### 1. 🏗️ Infrastructure Setup
 
-- [ ] **Environment**: Configure `.env` with `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
-- [ ] **Client**: Initialize `@supabase/supabase-js` singleton.
-- [ ] **Database**: Create `assets` table with strict typing matching our Zod schema.
+- [x] **Environment**: Configure `.env` with `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
+- [x] **Client**: Initialize `@supabase/supabase-js` singleton.
+- [x] **Database**: Create `assets` table with strict typing matching our Zod schema.
 
 ### 2. 🔄 Data Layer Migration
 
-- [ ] **Refactor Service**: Rewrite `AssetService.ts` to replace `localStorage` logic with Supabase queries.
-- [ ] **Error Handling**: Adapt `handleAsync` to wrap Supabase errors.
-- [ ] **Verification**: Ensure `useInventory` hook works unchanged (Interface Segregation).
+- [x] **Refactor Service**: Rewrite `AssetService.ts` to replace `localStorage` logic with Supabase queries.
+- [x] **Error Handling**: Adapt `handleAsync` to wrap Supabase errors.
+- [x] **Verification**: Ensure `useInventory` hook works unchanged (Interface Segregation).
 
 ### 3. 🔐 Authentication (Bonus)
 
-- [ ] **Auth Context**: Manage user session.
-- [ ] **Row Level Security (RLS)**: Secure data so users only see their own inventory.
+- [x] **Auth Context**: Manage user session.
+- [x] **Row Level Security (RLS)**: Secure data so users only see their own inventory.
+
+## 🚀 Phase 7: Deployment (Next Steps)
+
+Ready for production.
+
+### 1. 🌍 Hosting
+
+- [ ] **Frontend**: Deploy to Netlify or Vercel (SPA Mode).
+- [ ] **Environment**: Configure Production Env Vars.
+
+### 2. 🛡️ Final Polish
+
+- [ ] **Lighthouse**: Performance Audit.
+- [ ] **Build Check**: Verify `npm run build` passes with 0 errors.

@@ -3,38 +3,57 @@
 ## 📂 Directory Map
 
 ```
-src/
-├── api/             # Infrastructure Layer (LocalStorage, APIs)
-│   └── asset.service.ts
-├── assets/          # Static assets (images, fonts)
-├── context/         # 🌍 Global State (InventoryContext)
-├── components/
-│   ├── assets/      # 📦 Domain Components (AssetCard, InventoryFilters)
-│   ├── charts/      # 📊 Data Visualization (CategoryDonutChart)
-│   └── ui/          # 🧱 Atomic Components (Navbar, Badge, Button)
-├── hooks/           # Business Logic Hooks (useInventory, useAssetFilter)
-├── layouts/         # 📐 Page Skeletals (Layout)
-├── pages/           # 📱 Route Views (Dashboard, Inventory, AddAsset)
-├── schemas/         # 🛡️ Data Types & Validation (Zod)
-│   └── asset.schema.ts
-└── utils/           # Shared Utilities
-    └── handle-async.ts
+react enero26/           (Root)
+├── backend/             # 🗄️ Backend Configuration (Supabase)
+│   └── migrations/      # SQL Source of Truth
+│       ├── 01_init_assets.sql
+│       └── 02_auth_rls.sql  # 🔐 Auth & Row Level Security
+├── Inventory_manager/   (Frontend)
+│   ├── src/
+│   │   ├── api/         # Infrastructure Layer (Supabase Adapters)
+│   │   │   └── asset.service.ts
+│   │   ├── lib/         # 🔌 External Clients
+│   │   │   └── supabase.ts
+│   │   ├── assets/      # Static assets
+│   │   ├── context/     # 🌍 Global State
+│   │   │   ├── AuthContext.tsx       # 🔐 User Session & RLS
+│   │   │   └── InventoryContext.tsx  # 📦 Asset State
+│   │   ├── components/  # 🧩 UI Components
+│   │   │   ├── auth/    # 🔒 Protected Routes
+│   │   │   ├── ui/      # ⚛️ Atoms (Navbar, BottomNav)
+│   │   │   └── assets/  # 📋 Business Components
+│   │   ├── hooks/       # 🎣 Business Logic
+│   │   ├── pages/       # 📱 Routes
+│   │   │   ├── Login.tsx  # 🔑 Auth Entry Point
+│   │   │   └── ...
+│   │   ├── schemas/     # 🛡️ Zod Schemas (The Authority)
+│   │   │   ├── asset.schema.ts
+│   │   │   └── auth.schema.ts
+│   │   └── utils/       # 🛠️ Helpers
 ```
 
 ## 🔄 Data Flow Patterns
 
-### 1. Creating Data (The "Defense" Flow)
+### 1. Creating Data (The "Adapter" Flow)
 
-User Input ➔ **Zod Schema** (Validate & Transform) ➔ **Service** (Save) ➔ **LocalStorage**
+User Input ➔ **Zod Schema** (Validate) ➔ **Service** (Map to Snake Case) ➔ **Supabase** (Persist)
 
-- **Rule:** Never send raw input to the service. Validate first.
-- **Ids:** Generated automatically by Zod default (`crypto.randomUUID`).
+- **Rule:** The App speaks `camelCase`. The DB speaks `snake_case`. The Service Layer handles the translation.
+- **Safety:** We normalize all Dates to strict ISO strings (`...Z`) before sending.
 
-### 2. Reading Data (The "Verify" Flow)
+### 2. Reading Data (The "Defensive" Flow)
 
-**LocalStorage** ➔ **Service** (Get) ➔ **Zod Schema** (Integrity Check) ➔ **UI**
+**Supabase** (JSON) ➔ **Service** (Map to Camel Case) ➔ **Zod Schema** (Safe Parse) ➔ **UI**
 
-- **Rule:** Always filter loaded data through `Schema.safeParse`. If external data is corrupted, the UI shouldn't crash.
+- **Rule:** Trust No One. Even DB data is validated against the Schema.
+- **Resilience:** If a row is corrupted, it is skipped (logged), preventing a full app crash.
+
+### 3. Authentication Flow (The "Secure" Flow)
+
+**User** (Login) ➔ **Supabase Auth** (JWT) ➔ **AuthContext** (State) ➔ **ProtectedRoute** (Gatekeeper)
+
+- **Security:** RLS Policies in Postgres ensure data isolation at the engine level.
+- **Rotation:** Session tokens are automatically rotated by the Supabase client.
 
 ## 🛠️ Key Utilities
 

@@ -4,6 +4,9 @@ export const AssetSchema = z.object({
   // UUID generado automáticamente si no existe (ideal para LocalStorage)
   id: z.uuid().default(() => globalThis.crypto.randomUUID()),
 
+  // Owner ID (Supabase Auth)
+  userId: z.string().uuid().optional(),
+
   name: z
     .string()
     .min(3, "Name must be at least 3 characters")
@@ -32,7 +35,10 @@ export const AssetSchema = z.object({
     .enum(["active", "maintenance", "retired", "lost"])
     .default("active"),
 
-  purchaseDate: z.iso.datetime().default(() => new Date().toISOString()),
+  purchaseDate: z
+    .string()
+    .datetime()
+    .default(() => new Date().toISOString()),
 });
 
 // Tipos inferidos
