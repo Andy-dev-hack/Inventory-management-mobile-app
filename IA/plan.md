@@ -85,16 +85,53 @@ Transitioning from local-only storage to a scalable cloud backend.
 - [x] **Auth Context**: Manage user session.
 - [x] **Row Level Security (RLS)**: Secure data so users only see their own inventory.
 
-## 🚀 Phase 7: Deployment (Next Steps)
+## 🚀 Phase 7: Deployment (Immediate Priority)
 
-Ready for production.
+The goal is to get the Supabase-backed app live for actual usage.
 
 ### 1. 🌍 Hosting
 
 - [ ] **Frontend**: Deploy to Netlify or Vercel (SPA Mode).
-- [ ] **Environment**: Configure Production Env Vars.
+- [ ] **Environment**: Configure Production Env Vars (`VITE_SUPABASE_URL`, etc.).
 
 ### 2. 🛡️ Final Polish
 
-- [ ] **Lighthouse**: Performance Audit.
+- [ ] **Lighthouse**: Performance Audit (aim for all green).
 - [ ] **Build Check**: Verify `npm run build` passes with 0 errors.
+
+## 📦 Phase 8: Data Sovereignty & Auditing (SaaS Foundation)
+
+These features turn the app from a "tool" into a "platform" that businesses can trust.
+
+### 1. 📤 Data Sovereignty (Import/Export)
+
+_Problem: Users fear lock-in or data loss._
+
+- [ ] **Export Module**: Download inventory as JSON/CSV.
+- [ ] **Import Module**: Restore inventory from a backup file.
+- [ ] **Backup Strategy**: Document how users can keep their own backups.
+
+### 2. 📝 Maintenance Log & Audit Trail
+
+_Problem: "Who changed this?" and "When was this serviced?"_
+
+- [ ] **MaintenanceLog Entity**: Link to `Asset` (Date, Description, Cost, Tech).
+- [ ] **History View**: Show timeline of asset changes (Status changes, Edits).
+
+## 🧠 Phase 9: Enterprise Intelligence (Advanced)
+
+Adding high-value "Manager" features that justify a premium tier.
+
+### 1. 📉 Financial Intelligence
+
+_Problem: "What is my inventory worth right now?"_
+
+- [ ] **Depreciation Engine**: Implement Straight-Line Depreciation.
+- [ ] **Value Reporting**: Show Purchase Price vs. Current Estimated Value.
+
+### 2. 📍 Location Management & Geo-Tagging
+
+_Problem: "Where is this laptop physically?"_
+
+- [ ] **Location Schema**: Add `location` field (Office A, Warehouse B).
+- [ ] **Location Filter**: Filter dashboard by physical site.
