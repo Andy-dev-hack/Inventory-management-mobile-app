@@ -40,15 +40,6 @@ We have successfully transformed the app into a premium, mobile-first experience
   - **[x] Tests**: 100% pass rate on all updated components.
   - **[x] Linting**: Resolved unused variables and strict type issues.
 
-### Deferred / Future Mobile Enhancements
-
-These items remain in the backlog for future mobile optimization:
-
-- [ ] **PWA Capabilities**: Manifest.json, Service Workers.
-- [ ] **Native Gestures**: Swipe to delete, Drag and drop.
-- [ ] **Haptics**: Vibration feedback.
-- [ ] **View Toggles**: List vs Grid view switch.
-
 ## ✅ Phase 4: Advanced Features (Completed)
 
 ### 1. 📸 Integrated Barcode/QR Scanner
@@ -93,9 +84,11 @@ The goal is to get the Supabase-backed app live for actual usage.
 
 - [ ] **Frontend**: Deploy to Netlify or Vercel (SPA Mode).
 - [ ] **Environment**: Configure Production Env Vars (`VITE_SUPABASE_URL`, etc.).
+- [ ] **PWA**: Add `manifest.json` and Service Workers for "Add to Home Screen".
 
 ### 2. 🛡️ Final Polish
 
+- [ ] **View Customization**: Toggle between List and Grid views.
 - [ ] **Lighthouse**: Performance Audit (aim for all green).
 - [ ] **Build Check**: Verify `npm run build` passes with 0 errors.
 
@@ -135,3 +128,17 @@ _Problem: "Where is this laptop physically?"_
 
 - [ ] **Location Schema**: Add `location` field (Office A, Warehouse B).
 - [ ] **Location Filter**: Filter dashboard by physical site.
+
+### 3. 📸 Advanced QR Workflows
+
+_Problem: "I want to do more than just find things."_
+
+- [ ] **Quick Action**: Scan to instantly toggle status (Check-in/Check-out).
+- [ ] **Batch Operations**: Scan multiple items to move them all to a new location.
+
+## 💎 Phase 10: Native Experience (The "App" Feel)
+
+Closing the final gap between Web and Native functionality.
+
+- [ ] **Gestures**: Swipe-to-delete, Drag-and-drop reordering.
+- [ ] **Haptics**: Vibration feedback on success/error.
