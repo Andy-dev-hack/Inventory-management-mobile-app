@@ -9,6 +9,7 @@ react enero26/           (Root)
 │       ├── 01_init_assets.sql
 │       └── 02_auth_rls.sql  # 🔐 Auth & Row Level Security
 ├── Inventory_manager/   (Frontend)
+│   ├── public/          # 📦 PWA Assets (Icons, Manifest)
 │   ├── src/
 │   │   ├── api/         # Infrastructure Layer (Supabase Adapters)
 │   │   │   └── asset.service.ts
@@ -25,9 +26,12 @@ react enero26/           (Root)
 │   │   ├── hooks/       # 🎣 Business Logic
 │   │   ├── pages/       # 📱 Routes
 │   │   │   ├── Login.tsx  # 🔑 Auth Entry Point
+│   │   │   ├── Inventory.tsx      # 📋 List/Grid View
+│   │   │   ├── Inventory.test.tsx # ✅ UI Logic Tests
 │   │   │   └── ...
 │   │   ├── schemas/     # 🛡️ Zod Schemas (The Authority)
 │   │   │   ├── asset.schema.ts
+
 │   │   │   └── auth.schema.ts
 │   │   └── utils/       # 🛠️ Helpers
 ```
@@ -71,5 +75,14 @@ return data;
 
 The single source of truth for an Asset.
 
-- Use `z.infer<typeof AssetSchema>` for the complete Type.
 - Use `z.input<typeof AssetSchema>` for form inputs (allows optionals).
+
+## 🚀 Deployment & PWA
+
+### Build Pipeline
+
+**Vite** ➔ **dist/** (Static Files) ➔ **Service Worker** (Precache)
+
+- **Manifest**: `vite-plugin-pwa` generates `pro-manifest.webmanifest`.
+- **Offline**: Service Worker caches app shell (HTML/JS/CSS).
+- **Hosting**: Deployed as SPA (Single Page App) to Vercel/Netlify.

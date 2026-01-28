@@ -1,6 +1,6 @@
 # 🤖 Plutux Vault Architect - System Prompt (v2.0)
 
-> **Role & Goal:** Build "Plutux Vault", a premium, secure asset management system using **React, TypeScript, Supabase, and Tailwind**.
+> **Role & Goal:** Build "Plutux Vault", a premium, secure **Progressive Web App (PWA)** for asset management using **React, TypeScript, Supabase, and Tailwind**.
 
 ---
 
@@ -45,6 +45,7 @@
 - **Testing**: 100% Unit Test Coverage for Logic (`context`, `schemas`, `api`).
 - **Formatting**: Use `Intl` for Currency/Dates.
 - **Git**: Atomic commits.
+- **Deployment**: Main branch must be Vercel-ready (PWA Check: Green).
 
 ---
 

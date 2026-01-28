@@ -1,7 +1,6 @@
 import { AssetSchema, type Asset } from "../schemas/asset.schema";
 import { handleAsync, type AsyncResult } from "../utils/handle-async";
 import { supabase } from "../lib/supabase";
-import { z } from "zod";
 
 const normalizeDate = (date: string | null | undefined): string | undefined => {
   if (!date) return undefined;
@@ -13,8 +12,15 @@ const normalizeDate = (date: string | null | undefined): string | undefined => {
 };
 
 // Helper: Map DB (snake_case) -> App (camelCase)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mapToAsset = (row: any): unknown => ({
+interface AssetRow {
+  serial_number?: string | null;
+  purchase_date?: string | null;
+  created_at?: string | null;
+  user_id?: string | null;
+  [key: string]: unknown;
+}
+
+const mapToAsset = (row: AssetRow): unknown => ({
   ...row,
   serialNumber: row.serial_number,
   purchaseDate: normalizeDate(row.purchase_date),

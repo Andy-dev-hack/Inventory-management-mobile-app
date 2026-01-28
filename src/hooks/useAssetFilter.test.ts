@@ -7,7 +7,7 @@ const mockAssets: Asset[] = [
   {
     id: "1",
     name: "MacBook Pro",
-    category: "electronics",
+    category: "laptop",
     value: 2000,
     status: "active",
     purchaseDate: "2024-01-01",
@@ -23,7 +23,7 @@ const mockAssets: Asset[] = [
   {
     id: "3",
     name: "iPhone",
-    category: "electronics",
+    category: "laptop",
     value: 1000,
     status: "active",
     purchaseDate: "2024-01-01",
@@ -48,17 +48,15 @@ describe("useAssetFilter", () => {
 
   it("filters by category", () => {
     const { result } = renderHook(() =>
-      useAssetFilter(mockAssets, { search: "", category: "electronics" }),
+      useAssetFilter(mockAssets, { search: "", category: "laptop" }),
     );
     expect(result.current).toHaveLength(2);
-    expect(result.current.every((a) => a.category === "electronics")).toBe(
-      true,
-    );
+    expect(result.current.every((a) => a.category === "laptop")).toBe(true);
   });
 
   it("combines search and category filters", () => {
     const { result } = renderHook(() =>
-      useAssetFilter(mockAssets, { search: "phone", category: "electronics" }),
+      useAssetFilter(mockAssets, { search: "phone", category: "laptop" }),
     );
     expect(result.current).toHaveLength(1);
     expect(result.current[0].name).toBe("iPhone");

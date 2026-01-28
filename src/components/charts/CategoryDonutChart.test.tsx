@@ -26,7 +26,7 @@ describe("CategoryDonutChart", () => {
       {
         id: "1",
         name: "Laptop",
-        category: "electronics",
+        category: "laptop",
         value: 1000,
         status: "active",
         purchaseDate: new Date().toISOString(),
@@ -55,7 +55,7 @@ describe("CategoryDonutChart", () => {
       {
         id: "1",
         name: "A",
-        category: "electronics",
+        category: "laptop",
         value: 0,
         status: "active",
         purchaseDate: "",
@@ -63,7 +63,7 @@ describe("CategoryDonutChart", () => {
       {
         id: "2",
         name: "B",
-        category: "electronics",
+        category: "laptop",
         value: 0,
         status: "active",
         purchaseDate: "",

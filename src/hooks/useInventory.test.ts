@@ -17,7 +17,7 @@ describe("useInventory", () => {
     {
       id: "1",
       name: "Test Asset",
-      category: "electronics",
+      category: "laptop",
       value: 100,
       status: "active",
       purchaseDate: "2024-01-01",
@@ -74,7 +74,7 @@ describe("useInventory", () => {
     await act(async () => {
       await result.current.addAsset({
         name: "Test Asset",
-        category: "electronics",
+        category: "laptop",
         value: 100,
         status: "active",
       });
@@ -99,7 +99,7 @@ describe("useInventory", () => {
       await result.current.addAsset({
         name: "Bad Asset",
         value: 100,
-        category: "electronics",
+        category: "laptop",
       });
     });
 

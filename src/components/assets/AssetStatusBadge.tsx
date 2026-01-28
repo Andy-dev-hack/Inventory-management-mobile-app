@@ -1,10 +1,6 @@
 import { type Asset } from "../../schemas/asset.schema";
 import { Badge, type BadgeVariant } from "../ui/Badge";
 
-interface AssetStatusBadgeProps {
-  status: Asset["status"];
-}
-
 export const AssetStatusBadge = ({
   assetId,
   status,

@@ -16,7 +16,7 @@ const mockAssets: Asset[] = [
   {
     id: "1",
     name: "Context Asset",
-    category: "electronics",
+    category: "laptop",
     value: 100,
     status: "active",
     purchaseDate: "2024-01-01",
@@ -72,7 +72,7 @@ describe("InventoryContext", () => {
     await act(async () => {
       await result.current.addAsset({
         name: "Context Asset",
-        category: "electronics",
+        category: "laptop",
         value: 100,
         status: "active",
       });
