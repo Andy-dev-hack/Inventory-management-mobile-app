@@ -32,6 +32,7 @@ describe("Inventory Page Logic", () => {
       addAsset: vi.fn(),
       updateAsset: vi.fn(),
       deleteAsset: vi.fn(),
+      refreshAssets: vi.fn(),
     });
 
     render(<Inventory />);
@@ -48,7 +49,7 @@ describe("Inventory Page Logic", () => {
       addAsset: vi.fn(),
       updateAsset: vi.fn(),
       deleteAsset: vi.fn(),
-      refreshInventory: vi.fn(),
+      refreshAssets: vi.fn(),
     });
 
     render(<Inventory />);
@@ -66,7 +67,7 @@ describe("Inventory Page Logic", () => {
       addAsset: vi.fn(),
       updateAsset: vi.fn(),
       deleteAsset: vi.fn(),
-      refreshInventory: vi.fn(),
+      refreshAssets: vi.fn(),
     });
 
     render(<Inventory />);
@@ -99,7 +100,7 @@ describe("Inventory Page Logic", () => {
       addAsset: vi.fn(),
       updateAsset: vi.fn(),
       deleteAsset: vi.fn(),
-      refreshInventory: vi.fn(),
+      refreshAssets: vi.fn(),
     });
 
     render(<Inventory />);
