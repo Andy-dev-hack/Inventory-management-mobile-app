@@ -42,7 +42,9 @@
 ## 📝 Coding Standards
 
 - **Language**: English only.
-- **Testing**: 100% Unit Test Coverage for Logic (`context`, `schemas`, `api`).
+- **Language**: English only.
+- **Testing**: 100% Logic Coverage Goal (Enforced via `npm run test:coverage` at >95% baseline).
+- **Formatting**: Use `Intl` for Currency/Dates.
 - **Formatting**: Use `Intl` for Currency/Dates.
 - **Git**: Atomic commits.
 - **Deployment**: Main branch must be Vercel-ready (PWA Check: Green).

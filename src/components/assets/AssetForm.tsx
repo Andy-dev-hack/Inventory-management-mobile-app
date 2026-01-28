@@ -88,7 +88,7 @@ export const AssetForm = ({ onSubmit }: AssetFormProps) => {
         />
 
         <div className="flex gap-2 items-start">
-          <div className="flex-grow">
+          <div className="grow">
             <Input
               ref={serialInputRef}
               label="Serial Number (Optional)"

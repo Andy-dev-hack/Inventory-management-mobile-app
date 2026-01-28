@@ -1,4 +1,4 @@
-import { render, screen, waitFor, cleanup } from "@testing-library/react";
+import { render, screen, waitFor, cleanup, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { AuthProvider, useAuth } from "./AuthContext";
 // import { supabase } from "../lib/supabase"; // Not needed if we mock it below
@@ -90,5 +90,53 @@ describe("AuthContext", () => {
     await waitFor(() => {
       expect(screen.getByTestId("user-email").textContent).toBe("No User");
     });
+  });
+  it("updates state on auth change", async () => {
+    // 1. Setup initial session
+    mockGetSession.mockResolvedValue({
+      data: { session: null },
+    });
+
+    render(
+      <AuthProvider>
+        <TestComponent />
+      </AuthProvider>,
+    );
+
+    // Wait for initial load
+    await waitFor(() =>
+      expect(screen.getByTestId("user-email").textContent).toBe("No User"),
+    );
+
+    // 2. Trigger Auth Change
+    // We need to capture the callback passed to mockOnAuthStateChange
+    // The mock output: mockResult.data.subscription.unsubscribe
+    // But we need the ARGUMENT passed to onAuthStateChange.
+
+    // We can infer it was called during mount.
+    expect(mockOnAuthStateChange).toHaveBeenCalled();
+    const authCallback = mockOnAuthStateChange.mock.calls[0][0]; // First arg of first call
+
+    // 3. Simulate "SIGNED_IN" with a user
+    act(() => {
+      authCallback("SIGNED_IN", { user: { email: "new@example.com" } });
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId("user-email").textContent).toBe(
+        "new@example.com",
+      );
+    });
+  });
+
+  it("throws error if useAuth is used outside provider", () => {
+    // Suppress console.error for this test as React logs the error boundary
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    expect(() => render(<TestComponent />)).toThrow(
+      "useAuth must be used within an AuthProvider",
+    );
+
+    consoleSpy.mockRestore();
   });
 });

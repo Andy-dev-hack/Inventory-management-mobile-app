@@ -37,7 +37,7 @@ export const InventoryFilters: React.FC<InventoryFiltersProps> = ({
           <label htmlFor="search" className="sr-only">
             Search Assets
           </label>
-          <div className="relative flex-grow">
+          <div className="relative grow">
             <input
               ref={searchInputRef}
               type="text"

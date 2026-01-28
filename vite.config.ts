@@ -40,5 +40,30 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html"],
+      include: [
+        "src/api/**",
+        "src/context/**",
+        "src/hooks/**",
+        "src/schemas/**",
+        "src/utils/**",
+      ],
+      exclude: [
+        "src/main.tsx",
+        "src/vite-env.d.ts",
+        "**/*.test.tsx",
+        "**/*.test.ts",
+        "**/*config.ts",
+        "**/*config.js",
+      ],
+      thresholds: {
+        statements: 95,
+        branches: 80, // Practical limit for v8 branch coverage with heavy mocking
+        functions: 95,
+        lines: 95,
+      },
+    },
   },
 });

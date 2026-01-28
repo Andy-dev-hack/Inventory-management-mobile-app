@@ -11,7 +11,7 @@ export const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col bg-slate-900 pb-16 md:pb-0">
       <Navbar />
-      <main className="flex-grow container mx-auto px-4 py-8 relative z-10 text-slate-200">
+      <main className="grow container mx-auto px-4 py-8 relative z-10 text-slate-200">
         <Outlet />
       </main>
 

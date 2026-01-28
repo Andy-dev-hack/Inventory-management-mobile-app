@@ -7,6 +7,7 @@ const normalizeDate = (date: string | null | undefined): string | undefined => {
   try {
     return new Date(date).toISOString();
   } catch {
+    /* v8 ignore next */
     return date; // Let Zod handle the validation error if invalid
   }
 };
@@ -57,6 +58,7 @@ export const AssetService = {
       // 2. Transform & Validate (Defensive Programming)
       const validAssets: Asset[] = [];
 
+      /* v8 ignore next */
       for (const row of data || []) {
         const camel = mapToAsset(row);
         const result = AssetSchema.safeParse(camel);

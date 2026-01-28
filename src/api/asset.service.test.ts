@@ -40,20 +40,21 @@ describe("AssetService (Supabase)", () => {
       }),
     });
 
-    mockUpdate.mockReturnValue({
-      eq: mockEq,
-    });
-    mockEq.mockReturnValue({
+    // Update Chain: update -> eq -> select -> single
+    const updateEq = vi.fn().mockReturnValue({
       select: () => ({
         single: mockSingle,
       }),
     });
-
-    mockDelete.mockReturnValue({
-      eq: mockEq,
+    mockUpdate.mockReturnValue({
+      eq: updateEq,
     });
-    // Delete .eq directly returns promise
-    mockEq.mockResolvedValue({ error: null });
+
+    // Delete Chain: delete -> eq -> promise
+    const deleteEq = vi.fn().mockResolvedValue({ error: null });
+    mockDelete.mockReturnValue({
+      eq: deleteEq,
+    });
   });
 
   const mockAssetDB = {
@@ -136,6 +137,101 @@ describe("AssetService (Supabase)", () => {
 
       expect(err).toBeNull();
       expect(success).toBe(true);
+    });
+    it("should throw validation errors on save", async () => {
+      // Input missing required fields (name, category, value)
+      const invalidInput = { name: "Bad" }; // Too short
+
+      const [err, saved] = await AssetService.saveAsset(invalidInput);
+
+      expect(err).not.toBeNull();
+      // "Validation failed" is prefix from service
+      expect(err!.message).toMatch(/Validation failed/);
+      expect(saved).toBeNull();
+
+      // Ensure DB insert was NOT called
+      expect(mockInsert).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("updateAsset", () => {
+    it("should construct partial updates correctly (branch coverage)", async () => {
+      // Test updating individual fields one by one to trigger all 'if' branches
+      const fields = [
+        { name: "Updated Name" },
+        { category: "desktop" },
+        { value: 50 },
+        { status: "lost" },
+        { serialNumber: "SN-NEW" },
+        { purchaseDate: "2025-01-01T00:00:00.000Z" },
+      ];
+
+      for (const update of fields) {
+        mockSingle.mockResolvedValueOnce({
+          data: { ...mockAssetDB, ...update },
+          error: null,
+        });
+
+        const [err] = await AssetService.updateAsset("123", update as any);
+        expect(err).toBeNull();
+      }
+    });
+
+    it("should update asset and map response", async () => {
+      const updates = { value: 2000, status: "maintenance" as const };
+      const updatedAssetDB = {
+        ...mockAssetDB,
+        value: 2000,
+        status: "maintenance",
+      };
+
+      // Mock update chain: update().eq().select().single()
+      mockSingle.mockResolvedValue({ data: updatedAssetDB, error: null });
+
+      const [err, result] = await AssetService.updateAsset("123", updates);
+
+      expect(err).toBeNull();
+      expect(result!.value).toBe(2000);
+      expect(result!.status).toBe("maintenance");
+      expect(mockUpdate).toHaveBeenCalledWith(
+        expect.objectContaining({
+          value: 2000,
+          status: "maintenance",
+        }),
+      );
+    });
+
+    it("should handle update errors", async () => {
+      mockSingle.mockResolvedValue({
+        data: null,
+        error: { message: "Update failed" },
+      });
+
+      const [err, result] = await AssetService.updateAsset("123", { value: 0 });
+
+      expect(err!.message).toBe("Update failed");
+      expect(result).toBeNull();
+    });
+  });
+
+  describe("Edge Cases", () => {
+    it("should handle corrupted dates gracefully in mapping", async () => {
+      // Spy needs to be set up before calling the function
+      const consoleSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+
+      // Return a row with invalid date
+      mockOrder.mockResolvedValue({
+        data: [{ ...mockAssetDB, purchase_date: "invalid-date" }],
+        error: null,
+      });
+
+      const [err, data] = await AssetService.getAssets();
+
+      expect(err).toBeNull();
+      expect(data).toHaveLength(0); // Should be filtered out
+      expect(consoleSpy).toHaveBeenCalled();
+
+      consoleSpy.mockRestore();
     });
   });
 });
